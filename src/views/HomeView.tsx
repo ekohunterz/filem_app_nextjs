@@ -6,8 +6,8 @@ export default function HomeView({ data, page, setPage }: any) {
   const rand = Math.floor(Math.random() * data?.results.length)
   return (
     <>
-      <Hero id={data?.results[rand].id} />
       <main className='container mt-[500px] min-h-[calc(100vh-64px)] py-6'>
+        <Hero id={data?.results[rand].id} />
         <h1 className='mb-4 text-3xl font-bold  tracking-wide subpixel-antialiased'>
           Discover Movies
         </h1>
