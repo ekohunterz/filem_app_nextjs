@@ -10,11 +10,11 @@ export default function Home() {
   const endpoint = `discover/movie?page=${page}`
 
   const { data, error, isLoading } = useSWR(endpoint, fetcher)
+
   return (
     <>
-      {/* <SkeletonView /> */}
       {isLoading && <SkeletonView />}
-      {error && <div>failed to load</div>}
+      {error && <div className='text-center'>failed to load</div>}
       {data && <HomeView data={data} page={page} setPage={setPage} />}
     </>
   )
