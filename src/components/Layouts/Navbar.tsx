@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Navbar, NavbarBrand, NavbarContent, Input } from '@nextui-org/react'
 import { SearchIcon } from '../Icons/SearchIcon'
+import { useRouter } from 'next/router'
 
 export default function NavbarComponents() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const { push } = useRouter()
   useEffect(() => {
     window.onscroll = () => {
       setIsScrolled(window.scrollY === 0 ? false : true)
@@ -13,6 +15,11 @@ export default function NavbarComponents() {
       window.onscroll = null
     }
   }, [])
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+    push(`/search?search=${e.target[0].value}`)
+  }
 
   return (
     <Navbar
@@ -36,19 +43,21 @@ export default function NavbarComponents() {
       </NavbarContent>
 
       <NavbarContent as='div' className='items-center' justify='end'>
-        <Input
-          classNames={{
-            base: 'max-w-full sm:max-w-[10rem] h-10',
-            mainWrapper: 'h-full',
-            input: 'text-small',
-            inputWrapper:
-              'h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20',
-          }}
-          placeholder='Type to search...'
-          size='sm'
-          startContent={<SearchIcon size={16} />}
-          type='search'
-        />
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <Input
+            classNames={{
+              base: 'max-w-full sm:max-w-[10rem] h-10',
+              mainWrapper: 'h-full',
+              input: 'text-small',
+              inputWrapper:
+                'h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20',
+            }}
+            placeholder='Type to search...'
+            size='sm'
+            startContent={<SearchIcon size={16} />}
+            type='search'
+          />
+        </form>
       </NavbarContent>
     </Navbar>
   )

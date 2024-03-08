@@ -11,7 +11,11 @@ export default function DetailView({ data }: any) {
         <div className='absolute left-0 right-0 top-0 z-10 w-full'>
           <div className='relative '>
             <Image
-              src={`https://image.tmdb.org/t/p/original/${data?.backdrop_path}`}
+              src={
+                data.backdrop_path
+                  ? `https://image.tmdb.org/t/p/original/${data.backdrop_path}`
+                  : 'https://via.placeholder.com/1500x500'
+              }
               alt={data?.title}
               width={1500}
               height={1500}
