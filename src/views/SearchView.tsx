@@ -17,7 +17,7 @@ export default function SearchView({ data, page, setPage, query }: any) {
         <div className='mt-6 flex w-full justify-center'>
           <Pagination
             showControls
-            total={500}
+            total={data.total_pages}
             initialPage={page}
             page={page}
             onChange={setPage}
